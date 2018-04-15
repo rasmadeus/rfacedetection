@@ -2,10 +2,9 @@
 #include "asm_open_cv.h"
 
 #include <QPainter>
-#include <QPaintEvent>
 
 CvMatPlayer::CvMatPlayer(QWidget *parent)
-    : QWidget(parent)
+    : QWidget{ parent }
 {
 }
 
@@ -17,7 +16,7 @@ void CvMatPlayer::setFrame(cv::Mat const &mat)
 
 void CvMatPlayer::paintEvent(QPaintEvent *ev)
 {
-    std::ignore = ev;
+    Q_UNUSED(ev)
 
     QPainter painter{ this };
     painter.fillRect(rect(), Qt::black);

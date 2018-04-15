@@ -10,16 +10,12 @@ public:
     explicit CvMatPlayer(QWidget *parent = nullptr);
     void setFrame(cv::Mat const &mat);
 
-signals:
-    void started();
-    void stopped();
-    void frameReady(const cv::Mat& mat);
-
 protected:
     void paintEvent(QPaintEvent *ev) override;
 
 private:
     QPixmap _frame;
+    std::chrono::milliseconds _latency{ 0 };
 };
 
 #endif // CV_MAT_PLAYER_H

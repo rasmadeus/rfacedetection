@@ -15,7 +15,10 @@ SOURCES += \
     main_view.cpp \
     cv_mat_player.cpp \
     cv_mat_src.cpp \
-    cv_mat_reader.cpp
+    face_detector.cpp \
+    frame.cpp \
+    face_src.cpp \
+    frame_src.cpp
 
 HEADERS += \
     asm_open_cv.h \
@@ -23,7 +26,13 @@ HEADERS += \
     pch.h \
     cv_mat_player.h \
     cv_mat_src.h \
-    cv_mat_reader.h
+    face_detector.h \
+    frame.h \
+    face_src.h \
+    frame_src.h
 
 FORMS += \
     main_view.ui
+
+RESOURCES += \
+    res.qrc

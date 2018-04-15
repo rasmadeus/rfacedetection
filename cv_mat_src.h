@@ -6,6 +6,7 @@ class CvMatSrc
 public:
     CvMatSrc(QString const &videoFilePath);
     ~CvMatSrc();
+    bool isOpened() const { return _videoCapture.isOpened(); }
     cv::Mat next();
     double fps() const;
 
