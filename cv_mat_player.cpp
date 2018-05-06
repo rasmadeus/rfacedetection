@@ -1,5 +1,4 @@
 #include "cv_mat_player.h"
-#include "asm_open_cv.h"
 
 #include <QPainter>
 
@@ -8,9 +7,9 @@ CvMatPlayer::CvMatPlayer(QWidget *parent)
 {
 }
 
-void CvMatPlayer::setFrame(cv::Mat const &mat)
+void CvMatPlayer::setFrame(const Frame &frame)
 {
-    _frame = ASM::cvMatToQPixmap(mat);
+    _frame = frame.toPixmap();
     repaint();
 }
 
@@ -24,7 +23,7 @@ void CvMatPlayer::paintEvent(QPaintEvent *ev)
     if (_frame.isNull())
         return;
 
-    const QPixmap frame = _frame.scaled(width(), height(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    QPixmap const frame = _frame.scaled(width(), height(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QRect frameRect = frame.rect();
     frameRect.moveCenter(rect().center());
 

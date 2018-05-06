@@ -14,22 +14,28 @@ SOURCES += \
     main.cpp \
     main_view.cpp \
     cv_mat_player.cpp \
-    cv_mat_src.cpp \
     face_detector.cpp \
     frame.cpp \
-    face_src.cpp \
-    frame_src.cpp
+    frame_listener.cpp \
+    frame_src.cpp \
+    file_src.cpp \
+    frame_src_executor.cpp \
+    frame_notifier.cpp \
+    paint_listener.cpp
 
 HEADERS += \
     asm_open_cv.h \
     main_view.h \
     pch.h \
     cv_mat_player.h \
-    cv_mat_src.h \
     face_detector.h \
     frame.h \
-    face_src.h \
-    frame_src.h
+    frame_listener.h \
+    frame_src.h \
+    file_src.h \
+    frame_src_executor.h \
+    frame_notifier.h \
+    paint_listener.h
 
 FORMS += \
     main_view.ui

@@ -1,4 +1,5 @@
 #include "frame.h"
+#include "asm_open_cv.h"
 
 Frame::Frame(cv::Mat &&frame)
     : _frame{ std::move(frame) }
@@ -15,6 +16,11 @@ void Frame::append(std::vector<cv::Rect> const &faces, cv::Scalar const &color)
         const int h = faceRect.height;
         cv::rectangle(_frame, cv::Point{ x, y }, cv::Point{ x + w, y + h }, color, 2, 4);
     }
+}
+
+QPixmap Frame::toPixmap() const
+{
+    return ASM::cvMatToQPixmap(_frame);
 }
 
 cv::Mat Frame::toGray() const

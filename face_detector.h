@@ -6,7 +6,6 @@ class FaceDetector
 public:
     FaceDetector();
     std::vector<cv::Rect> find(cv::Mat const &frame);
-    bool empty() const { return _faceCascade.empty(); }
 
 private:
     cv::CascadeClassifier _faceCascade;

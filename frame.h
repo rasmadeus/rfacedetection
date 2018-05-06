@@ -7,6 +7,9 @@ public:
     Frame() = default;
     Frame(cv::Mat &&frame);
 
+    bool empty() const { return _frame.empty(); }
+
+    QPixmap toPixmap() const;
     cv::Mat toGray() const;
     cv::Mat toGray8U() const;
 

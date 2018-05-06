@@ -1,3 +1,4 @@
+#include "file_src.h"
 #include "main_view.h"
 
 #include <QFileDialog>
@@ -5,18 +6,18 @@
 MainView::MainView(QWidget* parent)
     : QMainWindow{ parent }
 {
-    _ui.setupUi(this);
+    _ui.setupUi(this);    
     connect(_ui.actionLoad, &QAction::triggered, this, &MainView::loadVideo);
-    connect(&_faceSrc, &FaceSrc::ready, &_frameSrc, &FrameSrc::push);
-    connect(&_frameSrc, &FrameSrc::ready, _ui.cvMatPlayer, &CvMatPlayer::setFrame);
 }
 
 void MainView::loadVideo()
 {
-    const QString fileName = QFileDialog::getOpenFileName(this, tr("Load video..."));
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Load video..."));
     if (!fileName.isEmpty())
     {
-        const double fps = _faceSrc.start(fileName);
-        _frameSrc.start(fps);
+        auto fileSrc = std::make_unique<FileSrc>(fileName.toLocal8Bit().constData());
+        _paintListener = std::make_shared<PaintListener>(*_ui.cvMatPlayer, 1000.0 / fileSrc->fps());
+        _frameSrcExecutor = std::make_unique<FrameSrcExecutor>(std::move(fileSrc));
+        _frameSrcExecutor->add(_paintListener);
     }
 }
